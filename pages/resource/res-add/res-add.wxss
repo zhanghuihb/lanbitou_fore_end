@@ -1,0 +1,20 @@
+/* pages/resource/res-add/res-add.wxss */
+.form {
+  box-sizing: border-box;
+  padding: 0 30rpx
+}
+
+.form .form-item {
+  height: 95rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form .form-item .label {
+  width:196rpx;
+  height :95rpx;
+  line-height: 96rpx;
+  font-size: 28rpx;
+  color:#777777;
+}

@@ -1,0 +1,9 @@
+<!--pages/resource/res-add/res-add.wxml-->
+<view class='form'>
+  <form bindsubmit='handleFormSubmit'>
+      <view class='form-item'>
+        <view class='label'>权限名称</view>
+        <input name='name' placeholder='请填写' type='text' maxlength='100'/>
+      </view>
+  </form>
+</view>
