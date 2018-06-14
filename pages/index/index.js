@@ -52,47 +52,51 @@ Page({
     console.log('上拉');
     var that = this
     getConsumerInfos(that);
+  },
+  // 进入消费详情
+  getConsumerInfoById: function(event){
+    let consumerInfoId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: 'edit/edit?consumerInfoId=' + consumerInfoId,
+    })
   }
 })
 
 // 查询消费记录
 var currentPage = 1;
 var getConsumerInfos = function(that){
-  that.setData({
-    hidden: false
-  });
+that.setData({
+  hidden: false
+});
 
-  const unionId = app.globalData.unionId;
-  let param = {
-    page: {
-      currentPage: currentPage,
-      pageSize: 20
-    }
+const unionId = app.globalData.unionId;
+let param = {
+  page: {
+    currentPage: currentPage,
+    pageSize: 20
   }
-  wx.showLoading({
-    title: '数据加载中',
-  })
-  Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId)
-    .then(data => {
-      console.log('data',data);
-      wx.hideLoading();
-      var l = that.data.records;
-      console.log('l=',l);
-      // 格式化时间
-      if (data.list.length > 0) {
-        for (var i = 0; i < data.list.length; i++) {
-          data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime / 1000, 'Y-M-D');
-          l.push(data.list[i]);
-        }
+}
+wx.showLoading({
+  title: '数据加载中',
+})
+Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId)
+  .then(data => {
+    wx.hideLoading();
+    var l = that.data.records;
+    // 格式化时间
+    if (data.list.length > 0) {
+      for (var i = 0; i < data.list.length; i++) {
+        data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime / 1000, 'Y-M-D');
+        l.push(data.list[i]);
       }
-      currentPage = data.currentPage + 1;
-      console.log('currentPage', currentPage);
-      that.data.records = l;
-      that.setData({ records: that.data.records });
-      that.setData({
-        hidden: true
-      });
-    }, err => {
-      wx.hideLoading();
-    })
+    }
+    currentPage = data.currentPage + 1;
+    that.data.records = l;
+    that.setData({ records: that.data.records });
+    that.setData({
+      hidden: true
+    });
+  }, err => {
+    wx.hideLoading();
+  })
 }

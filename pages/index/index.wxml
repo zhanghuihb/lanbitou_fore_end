@@ -7,8 +7,7 @@
     <view class="th" style='width:30%;'>日期</view>
   </view>
   <block wx:for="{{records}}">
-    <view class="tr">
-      <view class='hide'>{{item.id}}</view>
+    <view class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
       <view class="td" style='width:35%;'>{{item.codeName}}</view>
       <view class="td" style='width:20%;'>{{item.amount/100}}</view>
       <view wx:if="{{item.digest == 1}}" class="td" style='width:15%;'>收入</view>
