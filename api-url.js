@@ -4,7 +4,8 @@ const ENV = 'dev';
 
 let baseUrl = {
   lanbitou: {
-    dev: 'http://192.168.2.132:8080/lanbitou',
+    // dev: 'http://192.168.2.132:8080/lanbitou',
+    dev: 'http://192.168.0.104:8080/lanbitou',
     test: 'http://192.168.2.132:8080/lanbitou',
     prod: 'http://192.168.2.132:8080/lanbitou'
   }
