@@ -21,6 +21,8 @@ const b = (c = 'lanbitou', e = 'dev') => {
 export default {
   lanbitou: {
     login: b('lanbitou') + '/user/skip/login',
-    getConsumerInfos: b('lanbitou') +'/consumerInfo/getConsumerInfos'
+    getConsumerInfos: b('lanbitou') +'/consumerInfo/getConsumerInfos',
+    getAllCodes: b('lanbitou') + '/consumerCategory/getAllCodes',
+    getConsumerInfoById: b('lanbitou') + '/consumerInfo/getConsumerInfoById'
   }
 }

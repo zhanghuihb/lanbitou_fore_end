@@ -1,2 +1,87 @@
 <!--pages/index/edit/edit.wxml-->
-<text>pages/index/edit/edit.wxml</text>
+<view>
+  <view class='top'>
+    <view class='position' style='padding:5px;'>
+        <image style="width: 40px; height: 40px;" mode="aspectFit" src="../../../imgs/logo.png"></image>
+    </view>
+    <view class='position' style='padding:10px;'>
+      BURTON
+    </view>
+  </view>
+  <!-- 省市级联 -->
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='section left' style='width:100%;'>
+      <view style='width:50%'>  
+        <picker bindchange="bindProvince" value="{{provincesIndex}}" range="{{provinces}}">  
+          <view class="picker">  
+            省<text decode="{{true}}">&emsp;</text>份：{{provinces[provincesIndex]}}  
+          </view>  
+        </picker>  
+      </view>
+      <view style='width:50%'>  
+        <picker bindchange="bindCity" value="{{citysIndex}}" range="{{citys}}">  
+          <view class="picker">  
+            城<text decode="{{true}}">&emsp;</text>市：{{citys[citysIndex]}}  
+          </view>  
+        </picker>  
+      </view>
+    </view>
+    <view class='line'></view>
+    <!-- 分类 -->
+    <view class='section left' style='width:100%;'>
+      <view style='width:50%'>  
+        <picker bindchange="bindParentCategory" value="{{parentIndex}}" range="{{parentCategory}}">  
+          <view class="picker">  
+            父类别：{{parentCategory[parentIndex]}}  
+          </view>  
+        </picker>  
+      </view>
+      <view style='width:50%'>  
+        <picker bindchange="bindChildCategory" value="{{childIndex}}" range="{{childCategory}}">  
+          <view class="picker">  
+            子类别：{{childCategory[childIndex]}}  
+          </view>  
+        </picker>  
+      </view>
+    </view>
+    <view class='line'></view>
+    <!-- 消费金额 -->
+    <view class="section left">
+      金<text decode="{{true}}">&emsp;</text>额：<input type="digit" maxlength="11" placeholder="请输入金额" value="{{consumerInfo.amount/100}}"/>
+    </view>
+    <view class='line'></view>
+    <!-- 消费者 -->
+    <view class="section left">
+      消费者：<input maxlength="4" placeholder="请输入消费者" value='{{consumerInfo.consumer}}'/>
+    </view>
+    <view class='line'></view>
+    <!-- 消费时间 -->
+    <view class="section left" style='width:100%;'>
+      <view style='width:50%'>
+        <picker mode="date" value="{{date}}" start="2000-01-01" end="2099-01-01" bindchange="bindDateChange">
+          <view class="picker">
+            日<text decode="{{true}}">&emsp;</text>期: {{date}}
+          </view>
+        </picker>
+      </view>
+      <view style='width:50%'>
+        <picker mode="time" value="{{time}}" start="00：00" end="23:59" bindchange="bindTimeChange">
+          <view class="picker">
+            时<text decode="{{true}}">&emsp;</text>间: {{time}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='line'></view>
+    <!-- 描述 -->
+    <view class="section left">
+      描<text decode="{{true}}">&emsp;</text>述：<input maxlength="32" placeholder="描述" value='{{consumerInfo.description}}'/>
+    </view>
+    <view class='line'></view>
+
+    <view class="submit">
+      <button formType="submit">完<text decode="{{true}}">&emsp;</text>成</button>
+    </view>
+  </form>
+</view>
+
