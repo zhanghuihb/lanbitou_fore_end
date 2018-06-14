@@ -58,16 +58,16 @@
     <!-- 消费时间 -->
     <view class="section left" style='width:100%;'>
       <view style='width:50%'>
-        <picker mode="date" value="{{date}}" start="2000-01-01" end="2099-01-01" bindchange="bindDateChange">
+        <picker mode="date" value="{{consumerDate}}" start="2000-01-01" end="2099-01-01" bindchange="bindDateChange">
           <view class="picker">
-            日<text decode="{{true}}">&emsp;</text>期: {{date}}
+            日<text decode="{{true}}">&emsp;</text>期: {{consumerDate}}
           </view>
         </picker>
       </view>
       <view style='width:50%'>
-        <picker mode="time" value="{{time}}" start="00：00" end="23:59" bindchange="bindTimeChange">
+        <picker mode="time" value="{{consumerTime}}" start="00：00" end="23:59" bindchange="bindTimeChange">
           <view class="picker">
-            时<text decode="{{true}}">&emsp;</text>间: {{time}}
+            时<text decode="{{true}}">&emsp;</text>间: {{consumerTime}}
           </view>
         </picker>
       </view>
