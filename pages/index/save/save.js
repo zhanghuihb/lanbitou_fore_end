@@ -1,18 +1,135 @@
+import ApiUrl from '../../../api-url.js';
+import * as Tool from '../../../tool.js';
+
 // pages/index/save/save.js
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    provinces: [],
+    citys: [],
+    provincesIndex: 0,
+    citysIndex: 0,
+    parentCategory: [],
+    parentCategoryCode: [],
+    childCategory: [],
+    childCategoryCode: [],
+    parentIndex: 0,
+    childIndex: 0,
+
+    is_first_action: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // 省份
+    var globalProvinces = app.globalData.provinces;
+    var provinces = [];
+    for (var i = 0; i < globalProvinces.length; i++) {
+      provinces.push(globalProvinces[i].name);
+    }
+    var citys = [];
+    for (var j = 0; j < globalProvinces[this.data.provincesIndex].citys.length; j++) {
+      citys.push(globalProvinces[this.data.provincesIndex].citys[j].name);
+    }
+    this.setData({ provinces: provinces, citys: citys });
+    // 分类
+    var globalCategory = app.globalData.category;
+    var parentCategory = [];
+    var parentCategoryCode = [];
+    for (var a = 0; a < globalCategory.length; a++) {
+      parentCategory.push(globalCategory[a].name);
+      parentCategoryCode.push(globalCategory[a].code);
+    }
+    var childCategory = [];
+    var childCategoryCode = [];
+    for (var b = 0; b < globalCategory[this.data.parentIndex].codeList.length; b++) {
+      childCategory.push(globalCategory[this.data.parentIndex].codeList[b].name);
+      childCategoryCode.push(globalCategory[this.data.parentIndex].codeList[b].code);
+    }
+    this.setData({ parentCategory: parentCategory, childCategory: childCategory, parentCategoryCode: parentCategoryCode, childCategoryCode: childCategoryCode });
+  },
+
+  bindProvince: function (e) {
+    this.setData({ provincesIndex: e.detail.value, citysIndex: this.data.citysIndex })
+    var globalProvinces = app.globalData.provinces;
+
+    var globalCitys = globalProvinces[this.data.provincesIndex].citys;
+    var citys = [];
+    for (var i = 0; i < globalCitys.length; i++) {
+      citys.push(globalCitys[i].name);
+    }
+    this.setData({ citys: citys })
+  },
+
+  bindCity: function (e) {
+    this.setData({
+      citysIndex: e.detail.value
+    })
+  },
+
+  formSubmit: function (e) {
+    if (this.data.is_first_action){
+      // 防止重复提交
+      this.setData({ is_first_action:false});
+
+      var value = e.detail.value;
+      
+      let param = {
+        userId: app.globalData.xcxUserId,
+        province: this.data.provinces[value.province],
+        city: this.data.citys[value.city],
+        code: value.childCode,
+        codeName: this.data.childCategory[value.childCode],
+        parentCode: value.parentCode,
+        parentCodeName: this.data.parentCategory[value.parentCode],
+        amount: value.amount * 100,
+        consumer: value.consumer,
+        consumerTime: value.consumerDate + " " + value.consumerTime,
+        description: value.description
+      }
+      Tool.request(ApiUrl.lanbitou.addConsumerInfo, '', param, app.globalData.unionId)
+        .then(data => {
+          this.setData({ is_first_action: true});
+          // 更新成功后，返回上级页面
+          wx.navigateBack({
+            delta: 1
+          })
+        })
+    }
+    
+
+  },
+
+  formReset: function () {
+    console.log('form发生了reset事件')
+  },
+
+  bindParentCategory: function (e) {
+    this.setData({ parentIndex: e.detail.value, childIndex: this.data.childIndex })
+    var globalCategory = app.globalData.category;
+
+    var globalChildCategory = globalCategory[this.data.parentIndex].codeList;
+    var childCategory = [];
+    var childCategoryCode = [];
+    for (var i = 0; i < globalChildCategory.length; i++) {
+      childCategory.push(globalChildCategory[i].name);
+      childCategoryCode.push(globalChildCategory[i].code);
+    }
+    this.setData({ childCategory: childCategory, childCategoryCode: childCategoryCode });
+  },
+
+  bindChildCategory: function (e) {
+    this.setData({
+      childIndex: e.detail.value
+    })
   },
 
   /**

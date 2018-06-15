@@ -12,14 +12,14 @@
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class='section left' style='width:100%;'>
       <view style='width:50%'>  
-        <picker bindchange="bindProvince" value="{{provincesIndex}}" range="{{provinces}}">  
+        <picker bindchange="bindProvince" value="{{provincesIndex}}" range="{{provinces}}" name="province">  
           <view class="picker">  
             省<text decode="{{true}}">&emsp;</text>份：{{provinces[provincesIndex]}}  
           </view>  
         </picker>  
       </view>
       <view style='width:50%'>  
-        <picker bindchange="bindCity" value="{{citysIndex}}" range="{{citys}}">  
+        <picker bindchange="bindCity" value="{{citysIndex}}" range="{{citys}}" name="city">  
           <view class="picker">  
             城<text decode="{{true}}">&emsp;</text>市：{{citys[citysIndex]}}  
           </view>  
@@ -30,14 +30,14 @@
     <!-- 分类 -->
     <view class='section left' style='width:100%;'>
       <view style='width:50%'>  
-        <picker bindchange="bindParentCategory" value="{{parentIndex}}" range="{{parentCategory}}">  
+        <picker bindchange="bindParentCategory" value="{{parentIndex}}" range="{{parentCategory}}" name="parentCode">  
           <view class="picker">  
             父类别：{{parentCategory[parentIndex]}}  
           </view>  
         </picker>  
       </view>
       <view style='width:50%'>  
-        <picker bindchange="bindChildCategory" value="{{childIndex}}" range="{{childCategory}}">  
+        <picker bindchange="bindChildCategory" value="{{childIndex}}" range="{{childCategory}}" name="childCode">  
           <view class="picker">  
             子类别：{{childCategory[childIndex]}}  
           </view>  
@@ -47,25 +47,25 @@
     <view class='line'></view>
     <!-- 消费金额 -->
     <view class="section left">
-      金<text decode="{{true}}">&emsp;</text>额：<input type="digit" maxlength="11" placeholder="请输入金额" value="{{consumerInfo.amount/100}}"/>
+      金<text decode="{{true}}">&emsp;</text>额：<input type="digit" maxlength="11" placeholder="请输入金额" value="{{consumerInfo.amount/100}}" name="amount"/>
     </view>
     <view class='line'></view>
     <!-- 消费者 -->
     <view class="section left">
-      消费者：<input maxlength="4" placeholder="请输入消费者" value='{{consumerInfo.consumer}}'/>
+      消费者：<input maxlength="4" placeholder="请输入消费者" value='{{consumerInfo.consumer}}' name="consumer"/>
     </view>
     <view class='line'></view>
     <!-- 消费时间 -->
     <view class="section left" style='width:100%;'>
       <view style='width:50%'>
-        <picker mode="date" value="{{consumerDate}}" start="2000-01-01" end="2099-01-01" bindchange="bindDateChange">
+        <picker mode="date" value="{{consumerDate}}" start="2000-01-01" end="2099-01-01" bindchange="bindDateChange" name="consumerDate">
           <view class="picker">
             日<text decode="{{true}}">&emsp;</text>期: {{consumerDate}}
           </view>
         </picker>
       </view>
       <view style='width:50%'>
-        <picker mode="time" value="{{consumerTime}}" start="00：00" end="23:59" bindchange="bindTimeChange">
+        <picker mode="time" value="{{consumerTime}}" start="00：00" end="23:59" bindchange="bindTimeChange" name="consumerTime">
           <view class="picker">
             时<text decode="{{true}}">&emsp;</text>间: {{consumerTime}}
           </view>
@@ -75,7 +75,7 @@
     <view class='line'></view>
     <!-- 描述 -->
     <view class="section left">
-      描<text decode="{{true}}">&emsp;</text>述：<input maxlength="32" placeholder="描述" value='{{consumerInfo.description}}'/>
+      描<text decode="{{true}}">&emsp;</text>述：<input maxlength="32" placeholder="描述" value='{{consumerInfo.description}}' name="description"/>
     </view>
     <view class='line'></view>
 

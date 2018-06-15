@@ -18,7 +18,9 @@ Page({
     citysIndex: 0,
     consumerInfo: null,
     parentCategory: [],
+    parentCategoryCode: [],
     childCategory: [],
+    childCategoryCode: [],
     parentIndex: 0,
     childIndex: 0,
 
@@ -46,14 +48,18 @@ Page({
     // 分类
     var globalCategory = app.globalData.category;
     var parentCategory = [];
+    var parentCategoryCode = [];
     for(var a=0;a<globalCategory.length;a++){
       parentCategory.push(globalCategory[a].name);
+      parentCategoryCode.push(globalCategory[a].code);
     }
     var childCategory = [];
+    var childCategoryCode = [];
     for (var b = 0; b < globalCategory[this.data.parentIndex].codeList.length; b++) {
       childCategory.push(globalCategory[this.data.parentIndex].codeList[b].name);
+      childCategoryCode.push(globalCategory[this.data.parentIndex].codeList[b].code);
     }
-    this.setData({ parentCategory: parentCategory, childCategory: childCategory });
+    this.setData({ parentCategory: parentCategory, childCategory: childCategory, parentCategoryCode: parentCategoryCode, childCategoryCode: childCategoryCode});
 
     // 页面跳转后 逻辑
     this.getConsumerInfoById(options);
@@ -182,7 +188,34 @@ Page({
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    if (this.data.is_first_action){
+      // 防止重复提交
+      this.setData({ is_first_action: false });
+
+      var value = e.detail.value;
+      let param = {
+        id: this.data.consumerInfo.id,
+        province: this.data.provinces[value.province],
+        city: this.data.citys[value.city],
+        code: value.childCode,
+        codeName: this.data.childCategory[value.childCode],
+        parentCode: value.parentCode,
+        parentCodeName: this.data.parentCategory[value.parentCode],
+        amount: value.amount * 100,
+        consumer: value.consumer,
+        consumerTime: value.consumerDate + " " + value.consumerTime,
+        description: value.description
+      }
+      Tool.request(ApiUrl.lanbitou.editConsumerInfo, '', param, app.globalData.unionId)
+        .then(data => {
+          this.setData({ is_first_action: true });
+          
+          // 更新成功后，返回上级页面
+          wx.navigateBack({
+            delta: 1
+          })
+        })
+    }
   },
 
   formReset: function () {
@@ -195,10 +228,12 @@ Page({
 
     var globalChildCategory = globalCategory[this.data.parentIndex].codeList;
     var childCategory = [];
+    var childCategoryCode = [];
     for (var i = 0; i < globalChildCategory.length; i++) {
       childCategory.push(globalChildCategory[i].name);
+      childCategoryCode.push(globalChildCategory[i].code);
     }
-    this.setData({ childCategory: childCategory })
+    this.setData({ childCategory: childCategory, childCategoryCode: childCategoryCode });
   },
 
   bindChildCategory: function (e) {
@@ -215,15 +250,28 @@ Page({
     }
     Tool.request(ApiUrl.lanbitou.getConsumerInfoById,'',param,unionId)
     .then(data => {
-      data.consumerTime = time.formatTime(data.consumerTime / 1000, 'Y-M-D h-m');
+      // data.consumerTime = time.formatTime(data.consumerTime / 1000, 'Y-M-D h-m');
       this.data.consumerInfo = data;
-      let dateAndTime = [];
       
-      this.setData({ consumerInfo: this.data.consumerInfo});
+      let dateAndTime = data.consumerTime.split(" ");
+      this.setData({ consumerInfo: this.data.consumerInfo, consumerDate: dateAndTime[0], consumerTime: dateAndTime[1].slice(0,5)});
+
       // 回显分类
       this.changeToCurrentCategory();
       // 回显省市
       this.changeToCurrentProvince();
+    })
+  },
+
+  bindDateChange: function (e) {
+    this.setData({
+      consumerDate: e.detail.value
+    })
+  },
+
+  bindTimeChange: function (e) {
+    this.setData({
+      consumerTime: e.detail.value
     })
   }
 })

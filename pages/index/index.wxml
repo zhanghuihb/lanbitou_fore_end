@@ -1,5 +1,40 @@
 <!--index.wxml-->
 <view>
+  <view class="statics">
+    <view class="header">
+      <view class="top">
+        总收入
+      </view>
+      <view class="top">
+        <text class='spec-size'>0</text>.00
+      </view>
+    </view>
+    <view class='vertical-line'></view>
+    <view class="header">
+      <view class="top">
+        总支出
+      </view>
+      <view class="top">
+        0.00
+      </view>
+    </view>
+    <view class='vertical-line'></view>
+    <view class='header'>
+      <view class="top">
+        账户余额
+      </view>
+      <view class="top">
+        0.00
+      </view>
+    </view>
+  </view>
+
+  <view class="view" style="top:{{top}}px;left:{{left}}px;" bindtouchmove="setTouchMove" bindtap="addConsumerInfo">
+    <view>
+      <image style="height:30px;width:30px;" src="../../imgs/keep-accounts.png"></image>
+    </view>
+ </view>
+
   <view class="tr">
     <view class="th" style='width:35%;'>类别</view>
     <view class="th" style='width:20%;'>金额</view>
@@ -17,3 +52,4 @@
     <view class='line'></view>
   </block>
 </view>
+<!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button> -->

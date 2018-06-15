@@ -181,3 +181,13 @@ export function login() {
     })
   });
 }
+
+export function getSystemInfo() {
+  return Promise.all([
+    exports.wx.getSystemInfo()
+  ]).then(res => {
+    return {
+      systemInfo: res[0]
+    };
+  })
+}

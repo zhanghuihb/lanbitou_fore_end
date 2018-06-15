@@ -14,7 +14,15 @@ Page({
   data: {
     userInfo: '',
     unionId: '',
-    records: []
+    records: [],
+
+    top: '350',
+    left: '0',
+    windowWidth: '',
+    windowHeight: '',
+
+    hidden: false,
+    showMsg:''
   },
 
   /**
@@ -59,44 +67,68 @@ Page({
     wx.navigateTo({
       url: 'edit/edit?consumerInfoId=' + consumerInfoId,
     })
+  },
+
+  //拖动不超过规定范围
+  setTouchMove: function (e) {  
+    var systemInfo = app.globalData.systemInfo;
+    let clientX = e.touches[0].clientX;
+    let clientY = e.touches[0].clientY;
+    if (clientX > 0 && clientY > 0){
+      if (clientX < systemInfo.screenWidth - 30 && clientY < systemInfo.screenHeight - 150){
+        this.setData({
+          left: clientX,
+          top: clientY
+        })
+      }
+    }
+  },
+
+  // 记账
+  addConsumerInfo: function(){
+    wx.navigateTo({
+      url: 'save/save'
+    })
   }
+
 })
 
 // 查询消费记录
 var currentPage = 1;
 var getConsumerInfos = function(that){
-that.setData({
-  hidden: false
-});
+  that.setData({
+    hidden: false
+  });
 
-const unionId = app.globalData.unionId;
-let param = {
-  page: {
-    currentPage: currentPage,
-    pageSize: 20
-  }
-}
-wx.showLoading({
-  title: '数据加载中',
-})
-Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId)
-  .then(data => {
-    wx.hideLoading();
-    var l = that.data.records;
-    // 格式化时间
-    if (data.list.length > 0) {
-      for (var i = 0; i < data.list.length; i++) {
-        data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime / 1000, 'Y-M-D');
-        l.push(data.list[i]);
-      }
+  const unionId = app.globalData.unionId;
+  let param = {
+    page: {
+      currentPage: currentPage,
+      pageSize: 20
     }
-    currentPage = data.currentPage + 1;
-    that.data.records = l;
-    that.setData({ records: that.data.records });
-    that.setData({
-      hidden: true
-    });
-  }, err => {
-    wx.hideLoading();
+  }
+  wx.showLoading({
+    title: '数据加载中',
   })
+  Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId)
+    .then(data => {
+      wx.hideLoading();
+      var l = that.data.records;
+      // 格式化时间
+      if (data.list.length > 0) {
+        for (var i = 0; i < data.list.length; i++) {
+          // data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime, 'Y-M-D');
+          data.list[i].consumerTime = data.list[i].consumerTime.split(" ")[0];
+          l.push(data.list[i]);
+        }
+      }
+      currentPage = data.currentPage + 1;
+      that.data.records = l;
+      that.setData({ records: that.data.records });
+      that.setData({
+        hidden: true
+      });
+    }, err => {
+      wx.hideLoading();
+    })
 }

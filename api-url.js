@@ -24,6 +24,8 @@ export default {
     login: b('lanbitou') + '/user/skip/login',
     getConsumerInfos: b('lanbitou') +'/consumerInfo/getConsumerInfos',
     getAllCodes: b('lanbitou') + '/consumerCategory/getAllCodes',
-    getConsumerInfoById: b('lanbitou') + '/consumerInfo/getConsumerInfoById'
+    getConsumerInfoById: b('lanbitou') + '/consumerInfo/getConsumerInfoById',
+    editConsumerInfo: b('lanbitou') + '/consumerInfo/editConsumerInfo',
+    addConsumerInfo: b('lanbitou') + '/consumerInfo/addConsumerInfo'
   }
 }

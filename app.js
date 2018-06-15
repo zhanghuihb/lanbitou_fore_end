@@ -7,8 +7,10 @@ App({
   onLaunch:function(){
     console.log('--- onLaunch ---');
     this.globalData.provinces = provinces.provinces;
-    this.login();
     this.getAllCodes();
+    this.getSystemInfo();
+
+    this.login();
   },
   onShow: function(){
     
@@ -29,15 +31,18 @@ App({
 
     userInfo: null,
     unionId: '',
+    xcxUserId: '',
 
     provinces: [],
-    category: []
+    category: [],
+    systemInfo: null
   },
   login(){
     Tool.login().then(data => {
       console.log("----", data, "----------");
       this.globalData.userInfo = data.loginInfo;
-      this.globalData.unionId = data.loginInfo.unionId
+      this.globalData.unionId = data.loginInfo.unionId;
+      this.globalData.xcxUserId = data.loginInfo.xcxUserId;
 
       this.globalData.readyCallbackList.forEach(cb => cb()); 
       this.globalData.isReady = true;
@@ -61,6 +66,12 @@ App({
   getAllCodes(){
     Tool.request(ApiUrl.lanbitou.getAllCodes,'','','').then(data => {
       this.globalData.category = data;
+    })
+  },
+
+  getSystemInfo(){
+    Tool.getSystemInfo().then(data => {
+      this.globalData.systemInfo = data.systemInfo;
     })
   }
 })
