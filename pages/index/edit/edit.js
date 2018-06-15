@@ -182,7 +182,7 @@ Page({
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
 
   formReset: function () {
@@ -217,28 +217,13 @@ Page({
     .then(data => {
       data.consumerTime = time.formatTime(data.consumerTime / 1000, 'Y-M-D h-m');
       this.data.consumerInfo = data;
-      let dateAndTime = data.consumerTime.split(" ");
-      this.setData({ consumerInfo: this.data.consumerInfo, consumerDate: dateAndTime[0], consumerTime: dateAndTime[1]});
+      let dateAndTime = [];
+      
+      this.setData({ consumerInfo: this.data.consumerInfo});
       // 回显分类
       this.changeToCurrentCategory();
       // 回显省市
       this.changeToCurrentProvince();
-    })
-  },
-
-  bindDateChange: function (e) {
-    //设置事件
-    this.setData({
-      //consumerDate
-      consumerDate: e.detail.value
-    })
-  },
-
-  bindTimeChange: function (e) {
-    //设置事件
-    this.setData({
-      //consumerTime
-      consumerTime: e.detail.value
     })
   }
 })
