@@ -19,10 +19,7 @@ Page({
     top: '350',
     left: '0',
     windowWidth: '',
-    windowHeight: '',
-
-    hidden: false,
-    showMsg:''
+    windowHeight: ''
   },
 
   /**

@@ -65,7 +65,6 @@ export function genReqBody(token, param, unionId) {
 * 对 Tool.wx.request 进一步处理
 */
 export function request(url, token, param, unionId, callback) {
-  console.log('----',unionId);
   let p = exports.wx.request({
     url,
     method: 'POST',

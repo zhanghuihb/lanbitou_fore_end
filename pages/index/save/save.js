@@ -22,13 +22,16 @@ Page({
     parentIndex: 0,
     childIndex: 0,
 
-    is_first_action: true
+    is_first_action: true,
+
+    showMsg: '必填参数为空'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    new app.ToastPannel();
     // 省份
     var globalProvinces = app.globalData.provinces;
     var provinces = [];
@@ -81,14 +84,15 @@ Page({
       this.setData({ is_first_action:false});
 
       var value = e.detail.value;
+      console.log("value", value);
       
       let param = {
         userId: app.globalData.xcxUserId,
         province: this.data.provinces[value.province],
         city: this.data.citys[value.city],
-        code: value.childCode,
+        code: this.data.childCategoryCode[value.childCode],
         codeName: this.data.childCategory[value.childCode],
-        parentCode: value.parentCode,
+        parentCode: this.data.parentCategoryCode[value.parentCode],
         parentCodeName: this.data.parentCategory[value.parentCode],
         amount: value.amount * 100,
         consumer: value.consumer,
@@ -97,7 +101,7 @@ Page({
       }
       Tool.request(ApiUrl.lanbitou.addConsumerInfo, '', param, app.globalData.unionId)
         .then(data => {
-          this.setData({ is_first_action: true});
+          this.setData({ is_first_action: true }); 
           // 更新成功后，返回上级页面
           wx.navigateBack({
             delta: 1
@@ -179,5 +183,17 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  bindDateChange: function (e) {
+    this.setData({
+      consumerDate: e.detail.value
+    })
+  },
+
+  bindTimeChange: function (e) {
+    this.setData({
+      consumerTime: e.detail.value
+    })
   }
 })

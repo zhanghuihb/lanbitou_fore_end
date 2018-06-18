@@ -41,7 +41,7 @@
     <view class="th" style='width:15%;'>收支</view>
     <view class="th" style='width:30%;'>日期</view>
   </view>
-  <block wx:for="{{records}}">
+  <block wx:for="{{records}}" wx:key='id'>
     <view class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
       <view class="td" style='width:35%;'>{{item.codeName}}</view>
       <view class="td" style='width:20%;'>{{item.amount/100}}</view>
@@ -52,4 +52,4 @@
     <view class='line'></view>
   </block>
 </view>
-<!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button> -->
+<!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>  -->

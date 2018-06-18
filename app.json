@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/resource/res-query/res-query",
     "pages/resource/res-add/res-add",
-    "pages/resource/res-edit/res-edit"
+    "pages/resource/res-edit/res-edit",
+    "pages/statics/statics"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF8C00",
@@ -25,7 +26,7 @@
         "selectedIconPath": "/imgs/icon_home_selected.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/statics/statics",
         "text": "统计",
         "iconPath": "/imgs/icon_statics_default.png",
         "selectedIconPath": "/imgs/icon_statics_selected.png"

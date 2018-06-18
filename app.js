@@ -1,9 +1,11 @@
 import ApiUrl from './api-url.js';
 import * as Tool from './tool.js';
+import { ToastPannel } from './component/toast/toast.js';
 // 本地引入json数据
 var provinces = require('./data/city.js')
 //app.js
 App({
+  ToastPannel,
   onLaunch:function(){
     console.log('--- onLaunch ---');
     this.globalData.provinces = provinces.provinces;
@@ -35,7 +37,8 @@ App({
 
     provinces: [],
     category: [],
-    systemInfo: null
+    systemInfo: null,
+    showMsg: ''
   },
   login(){
     Tool.login().then(data => {

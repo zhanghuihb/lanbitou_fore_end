@@ -85,3 +85,5 @@
   </form>
 </view>
 
+<import src="../../../component/toast/toast.wxml" />
+<template is="toast" data="{{..._toast_}}" />
