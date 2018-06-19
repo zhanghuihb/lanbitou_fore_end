@@ -50,11 +50,12 @@ for (let name in wx) {
   exports.wx[name] = promisifyWx(name);
 }
 
-export function genReqBody(token, param, unionId) {
+export function genReqBody(token, param, unionId, userId) {
   let body = {
     appId: 1,
     unionId: unionId,
     token: token,
+    userId: userId,
     param: param
   };
 
@@ -64,11 +65,11 @@ export function genReqBody(token, param, unionId) {
 /**
 * 对 Tool.wx.request 进一步处理
 */
-export function request(url, token, param, unionId, callback) {
+export function request(url, token, param, unionId, userId, callback) {
   let p = exports.wx.request({
     url,
     method: 'POST',
-    data: genReqBody(token, param, unionId)
+    data: genReqBody(token, param, unionId, userId)
   }).then(res => {
     let resBody = res.data;
     if (resBody && typeof resBody === 'object') {

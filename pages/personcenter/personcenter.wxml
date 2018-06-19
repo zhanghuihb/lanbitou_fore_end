@@ -1,0 +1,24 @@
+<!--pages/personcenter/personcenter.wxml-->
+<view>
+  <view class='top'>
+    <view class='position' style='padding:5px;'>
+        <image style="width: 40px; height: 40px;" mode="aspectFit" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class='position' style='padding:10px;'>
+      {{userInfo.nickName}}
+    </view>
+  </view>
+
+  <view class='setting-view'>
+    <block wx:for="{{dataArr}}" wx:key="item">
+      <view class='personcenter'>
+        <image class='icon-image' src="{{item.icon}}"></image>
+        <text>{{item.title}}</text>
+        <!-- 红点 -->
+        <view class='redDot-view' wx:if="{{item.isShowRedDot}}"></view>
+        <image class='right-image' src='/imgs/icon_next.png'></image>
+      </view>
+    </block>
+  </view>
+
+</view>

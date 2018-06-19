@@ -50,6 +50,7 @@ App({
       this.globalData.readyCallbackList.forEach(cb => cb()); 
       this.globalData.isReady = true;
       this.globalData.isLogining = false;
+
     }, err => {
       console.log("+++++++++", err, "+++++++");
 

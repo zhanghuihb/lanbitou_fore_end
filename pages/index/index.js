@@ -12,6 +12,9 @@ Page({
   * 页面的初始数据
   */
   data: {
+    totalIncome: '',
+    totalExpend: '',
+    balance: '',
     userInfo: '',
     unionId: '',
     records: [],
@@ -26,7 +29,7 @@ Page({
    * 页面渲染后执行
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -39,6 +42,7 @@ Page({
       }
       var that = this;
       getConsumerInfos(that);
+      this.getAccountInfo();
     });
   },
 
@@ -85,6 +89,12 @@ Page({
   addConsumerInfo: function(){
     wx.navigateTo({
       url: 'save/save'
+    })
+  },
+
+  getAccountInfo() {
+    Tool.request(ApiUrl.lanbitou.getAccountInfo, '', '', '', app.globalData.xcxUserId).then(data => {
+      this.setData({ totalIncome: data.totalIncome, totalExpend:data.totalExpend, balance: data.balance});
     })
   }
 

@@ -1,0 +1,44 @@
+/* pages/personcenter/personcenter.wxss */
+.top {
+  height: 120px;
+  background: #FF8C00;
+}
+.position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.personcenter{
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  border-bottom:solid 1rpx rgba(214, 214, 214, 0.4);
+}
+
+.personcenter text{
+  font-size: 30rpx;
+	color: #333839;
+  margin-left: 17rpx;
+}
+
+.setting-view {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.icon-image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 33rpx;
+}
+.right-image{
+  position: absolute;
+  right: 30rpx;
+  top: 40rpx;
+  width: 12rpx;
+  height: 21rpx;
+}

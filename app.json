@@ -7,7 +7,8 @@
     "pages/resource/res-query/res-query",
     "pages/resource/res-add/res-add",
     "pages/resource/res-edit/res-edit",
-    "pages/statics/statics"
+    "pages/statics/statics",
+    "pages/personcenter/personcenter"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF8C00",
@@ -32,7 +33,7 @@
         "selectedIconPath": "/imgs/icon_statics_selected.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/personcenter/personcenter",
         "text": "我的",
         "iconPath": "/imgs/icon_personal_default.png",
         "selectedIconPath": "/imgs/icon_personal_selected.png"

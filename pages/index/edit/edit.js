@@ -191,30 +191,58 @@ Page({
     if (this.data.is_first_action){
       // 防止重复提交
       this.setData({ is_first_action: false });
-
       var value = e.detail.value;
-      let param = {
-        id: this.data.consumerInfo.id,
-        province: this.data.provinces[value.province],
-        city: this.data.citys[value.city],
-        code: value.childCode,
-        codeName: this.data.childCategory[value.childCode],
-        parentCode: value.parentCode,
-        parentCodeName: this.data.parentCategory[value.parentCode],
-        amount: value.amount * 100,
-        consumer: value.consumer,
-        consumerTime: value.consumerDate + " " + value.consumerTime,
-        description: value.description
-      }
-      Tool.request(ApiUrl.lanbitou.editConsumerInfo, '', param, app.globalData.unionId)
-        .then(data => {
-          this.setData({ is_first_action: true });
-          
-          // 更新成功后，返回上级页面
-          wx.navigateBack({
-            delta: 1
+
+      var warn = '';// 弹框提示内容
+      var flag = true;// 弹框控制
+      // 金额
+      var amount = value.amount;
+      if (amount == null || amount.length < 1){
+        warn = "金额不可为空";
+      }else if (amount.indexOf(".") != -1 && amount.substring(amount.indexOf("."), amount.length).length > 3) {
+        warn = "小数点后最多两位";
+      } else if (value.consumer == null || value.consumer.length < 1) {
+        warn = "消费者不可为空";
+      } else if (value.consumerDate == null || value.consumerDate < 1) {
+        warn = "日期不可为空";
+      } else if (value.consumerTime == null || value.consumerTime < 1) {
+        warn = "时间不可为空";
+      } else if (value.description == null || value.description < 1) {
+        warn = "描述不可为空";
+      } else {
+        flag = false;// 验证通过
+        let param = {
+          id: this.data.consumerInfo.id,
+          province: this.data.provinces[value.province],
+          city: this.data.citys[value.city],
+          code: value.childCode,
+          codeName: this.data.childCategory[value.childCode],
+          parentCode: value.parentCode,
+          parentCodeName: this.data.parentCategory[value.parentCode],
+          amount: value.amount * 100,
+          consumer: value.consumer,
+          consumerTime: value.consumerDate + " " + value.consumerTime,
+          description: value.description
+        }
+        Tool.request(ApiUrl.lanbitou.editConsumerInfo, '', param, app.globalData.unionId)
+          .then(data => {
+            this.setData({ is_first_action: true });
+
+            // 更新成功后，返回上级页面
+            wx.navigateBack({
+              delta: 1
+            })
+          }, err => {
+            this.setData({ is_first_action: true });
           })
+      }
+      if (flag) {
+        this.setData({ is_first_action: true });
+        wx.showModal({
+          title: '提示',
+          content: warn
         })
+      }
     }
   },
 

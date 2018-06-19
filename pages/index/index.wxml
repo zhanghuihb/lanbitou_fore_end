@@ -6,7 +6,7 @@
         总收入
       </view>
       <view class="top">
-        <text class='spec-size'>0</text>.00
+        {{totalIncome/100}}
       </view>
     </view>
     <view class='vertical-line'></view>
@@ -15,7 +15,7 @@
         总支出
       </view>
       <view class="top">
-        0.00
+        {{totalExpend/100}}
       </view>
     </view>
     <view class='vertical-line'></view>
@@ -24,7 +24,7 @@
         账户余额
       </view>
       <view class="top">
-        0.00
+        {{balance/100}}
       </view>
     </view>
   </view>
