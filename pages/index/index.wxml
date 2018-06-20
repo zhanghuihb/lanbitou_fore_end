@@ -31,7 +31,7 @@
 
   <view class="view" style="top:{{top}}px;left:{{left}}px;" bindtouchmove="setTouchMove" bindtap="addConsumerInfo">
     <view>
-      <image style="height:30px;width:30px;" src="../../imgs/keep-accounts.png"></image>
+      <image style="height:40px;width:40px;" src="../../imgs/keep-accounts.png"></image>
     </view>
  </view>
 
@@ -52,4 +52,4 @@
     <view class='line'></view>
   </block>
 </view>
-<!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>  -->
+   <!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>     -->

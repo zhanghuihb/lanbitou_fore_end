@@ -76,7 +76,7 @@ Page({
     let clientX = e.touches[0].clientX;
     let clientY = e.touches[0].clientY;
     if (clientX > 0 && clientY > 0){
-      if (clientX < systemInfo.screenWidth - 30 && clientY < systemInfo.screenHeight - 150){
+      if (clientX < systemInfo.screenWidth - 40 && clientY < systemInfo.screenHeight - 150){
         this.setData({
           left: clientX,
           top: clientY
@@ -125,7 +125,7 @@ var getConsumerInfos = function(that){
       if (data.list.length > 0) {
         for (var i = 0; i < data.list.length; i++) {
           // data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime, 'Y-M-D');
-          data.list[i].consumerTime = data.list[i].consumerTime.split(" ")[0];
+          data.list[i].consumerTime = data.list[i].consumerTime.split("T")[0];
           l.push(data.list[i]);
         }
       }

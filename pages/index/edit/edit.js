@@ -281,7 +281,7 @@ Page({
       // data.consumerTime = time.formatTime(data.consumerTime / 1000, 'Y-M-D h-m');
       this.data.consumerInfo = data;
       
-      let dateAndTime = data.consumerTime.split(" ");
+      let dateAndTime = data.consumerTime.split("T");
       this.setData({ consumerInfo: this.data.consumerInfo, consumerDate: dateAndTime[0], consumerTime: dateAndTime[1].slice(0,5)});
 
       // 回显分类

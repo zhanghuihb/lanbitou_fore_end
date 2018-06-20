@@ -20,7 +20,7 @@
 }
 
 .personcenter text{
-  font-size: 30rpx;
+  font-size: 32rpx;
 	color: #333839;
   margin-left: 17rpx;
 }
@@ -31,8 +31,8 @@
   margin-top: 20rpx;
 }
 .icon-image{
-  width: 30rpx;
-  height: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-left: 33rpx;
 }
 .right-image{
