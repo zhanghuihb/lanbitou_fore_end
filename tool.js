@@ -161,7 +161,7 @@ export function login() {
     };
 
     return exports.wx.request({
-      url: ApiUrl.lanbitou.login,
+      url: ApiUrl.user.login,
       method: 'POST',
       data: genReqBody('', param, '')
     }).then(res => {
