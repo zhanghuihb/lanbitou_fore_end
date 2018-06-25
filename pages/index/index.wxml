@@ -1,48 +1,22 @@
 <!--index.wxml-->
 <view>
-  <view class="statics">
-    <view class="header">
-      <view class="top">
-        总收入
-      </view>
-      <view class="top">
-        {{totalIncome/100}}
-      </view>
-    </view>
-    <view class='vertical-line'></view>
-    <view class="header">
-      <view class="top">
-        总支出
-      </view>
-      <view class="top">
-        {{totalExpend/100}}
-      </view>
-    </view>
-    <view class='vertical-line'></view>
-    <view class='header'>
-      <view class="top">
-        账户余额
-      </view>
-      <view class="top">
-        {{balance/100}}
-      </view>
-    </view>
-  </view>
-
   <view class="view" style="top:{{top}}px;left:{{left}}px;" bindtouchmove="setTouchMove" bindtap="addConsumerInfo">
     <view>
       <image style="height:40px;width:40px;" src="../../imgs/keep-accounts.png"></image>
     </view>
  </view>
 
-  <view class="tr">
-    <view class="th" style='width:35%;'>类别</view>
-    <view class="th" style='width:20%;'>金额</view>
-    <view class="th" style='width:15%;'>收支</view>
-    <view class="th" style='width:30%;'>日期</view>
-  </view>
   <block wx:for="{{records}}" wx:key='id'>
-    <view class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
+    <view wx:if="{{item.id == null}}" class='month'>
+      <view style='margin-left:20px;'>{{item.baseResultStatics.localDate}}</view>
+      <view>
+        收入¥{{item.baseResultStatics.totalIncome/100}}
+      </view>
+      <view>
+        支出¥{{item.baseResultStatics.totalExpend/100}}
+      </view>
+    </view>
+    <view  wx:else class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
       <view class="td" style='width:35%;'>{{item.codeName}}</view>
       <view class="td" style='width:20%;'>{{item.amount/100}}</view>
       <view wx:if="{{item.digest == 1}}" class="td" style='width:15%;'>收入</view>

@@ -1,11 +1,40 @@
 <!--pages/personcenter/personcenter.wxml-->
 <view>
-  <view class='top'>
+  <view class='accountinfo'>
     <view class='position' style='padding:5px;'>
         <image style="width: 40px; height: 40px;" mode="aspectFit" src="{{userInfo.avatarUrl}}"></image>
     </view>
     <view class='position' style='padding:10px;'>
       {{userInfo.nickName}}
+    </view>
+  </view>
+
+  <view class="statics">
+    <view class="header">
+      <view class="top">
+        总收入
+      </view>
+      <view class="top">
+        ¥{{totalIncome/100}}
+      </view>
+    </view>
+    <view class='vertical-line'></view>
+    <view class="header">
+      <view class="top">
+        总支出
+      </view>
+      <view class="top">
+        ¥{{totalExpend/100}}
+      </view>
+    </view>
+    <view class='vertical-line'></view>
+    <view class='header'>
+      <view class="top">
+        账户余额
+      </view>
+      <view class="top">
+        ¥{{balance/100}}
+      </view>
     </view>
   </view>
 

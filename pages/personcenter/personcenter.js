@@ -1,4 +1,7 @@
 // pages/personcenter/personcenter.js
+import ApiUrl from '../../api-url.js';
+import * as Tool from '../../tool.js';
+
 const app = getApp();
 Page({
 
@@ -6,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    totalIncome: '',
+    totalExpend: '',
+    balance: '',
     userInfo:'',
     dataArr: [
       {
@@ -44,7 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getAccountInfo();
   },
 
   /**
@@ -80,5 +86,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+ /**
+  * 查询账户信息
+  */
+  getAccountInfo() {
+    Tool.request(ApiUrl.lanbitou.getAccountInfo, '', '', '', app.globalData.xcxUserId).then(data => {
+      this.setData({ totalIncome: data.totalIncome, totalExpend: data.totalExpend, balance: data.balance });
+    })
   }
 })

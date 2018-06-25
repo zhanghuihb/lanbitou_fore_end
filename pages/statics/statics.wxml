@@ -1,2 +1,24 @@
 <!--pages/statics/statics.wxml-->
-<text>pages/statics/statics.wxml</text>
+<view>
+  <view class='condition'>
+    <view class='view_second'>
+      <view class="section">
+        <picker mode="date" fields='month' value="{{consumerDate}}" start="2000-01" end="2099-01" bindchange="bindDateChange">
+          <view class="picker" style='float:left;'>
+            <view wx:if='{{consumerDate}}'>{{consumerDate}}<text decode="{{true}}">&emsp;</text></view>
+            <view wx:else>2018-06<text decode="{{true}}">&emsp;</text></view>
+          </view>
+          <view style='float:left;'>
+            <image style="width: 23px; height: 23px;float:left;" mode="aspectFit" src="../../../imgs/icon_more_unfold.png"></image>
+          </view>
+          <view style='float:right;'>
+            <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_default.png"></image>
+          </view>
+          <view style='float:right;'>
+            <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_default.png"></image>
+          </view> 
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>

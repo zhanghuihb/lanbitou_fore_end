@@ -12,12 +12,11 @@ Page({
   * 页面的初始数据
   */
   data: {
-    totalIncome: '',
-    totalExpend: '',
-    balance: '',
     userInfo: '',
     unionId: '',
     records: [],
+
+    localDate: '',
 
     top: '350',
     left: '0',
@@ -41,8 +40,12 @@ Page({
         return;
       }
       var that = this;
+
+      currentPage = 1;
+      this.setData({
+        records: [],
+      });
       getConsumerInfos(that);
-      this.getAccountInfo();
     });
   },
 
@@ -90,12 +93,6 @@ Page({
     wx.navigateTo({
       url: 'save/save'
     })
-  },
-
-  getAccountInfo() {
-    Tool.request(ApiUrl.lanbitou.getAccountInfo, '', '', '', app.globalData.xcxUserId).then(data => {
-      this.setData({ totalIncome: data.totalIncome, totalExpend:data.totalExpend, balance: data.balance});
-    })
   }
 
 })
@@ -108,7 +105,10 @@ var getConsumerInfos = function(that){
   });
 
   const unionId = app.globalData.unionId;
+  const xcxUserId = app.globalData.xcxUserId;
+  var localDate = that.data.localDate;
   let param = {
+    localDate: localDate,
     page: {
       currentPage: currentPage,
       pageSize: 20
@@ -117,7 +117,7 @@ var getConsumerInfos = function(that){
   wx.showLoading({
     title: '数据加载中',
   })
-  Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId)
+  Tool.request(ApiUrl.lanbitou.getConsumerInfos, '', param, unionId, xcxUserId)
     .then(data => {
       wx.hideLoading();
       var l = that.data.records;
@@ -125,13 +125,19 @@ var getConsumerInfos = function(that){
       if (data.list.length > 0) {
         for (var i = 0; i < data.list.length; i++) {
           // data.list[i].consumerTime = time.formatTime(data.list[i].consumerTime, 'Y-M-D');
-          data.list[i].consumerTime = data.list[i].consumerTime.split("T")[0];
+          if(data.list[i].consumerTime != null){
+            data.list[i].consumerTime = data.list[i].consumerTime.split("T")[0];
+          }else{
+            that.data.localDate = data.list[i].baseResultStatics.localDate;
+            data.list[i].baseResultStatics.localDate = data.list[i].baseResultStatics.localDate.substring(0,7);
+          }
+          
           l.push(data.list[i]);
         }
       }
       currentPage = data.currentPage + 1;
       that.data.records = l;
-      that.setData({ records: that.data.records });
+      that.setData({ records: that.data.records});
       that.setData({
         hidden: true
       });
