@@ -42,38 +42,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    columnChart = new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'column',
-      animation: true, // 是否动画展示
-      categories: this.data.categories,
-      series: [{
-        name: '六个月对比图',
-        data: this.data.amountList,
-        format: function (val, name) {
-          return '¥' + val.toFixed(2);
-        },
-        color: '#99FF99'
-      }],
-      yAxis: {
-        format: function (val) {
-          return val;
-        },
-        min: 0,
-      },
-      xAxis: {
-        disableGrid: true,
-        type: 'calibration',
-      },
-      extra: {
-        column: {
-          width: 25,
-          legendTextColor : 'red'
-        }
-      },
-      width: this.data.windowWidth,
-      height: 200,
-    });
+    
   },
 
   /**
@@ -140,6 +109,7 @@ Page({
       hiddenArr: hiddenArr,
       digest: '收入'
     })
+    this.staticsConsumerInfoByMonth();
   },
   bindHiddenTap_out_default: function (e) {
     var hiddenArr = [false, true]
@@ -147,6 +117,7 @@ Page({
       hiddenArr: hiddenArr,
       digest: '支出'
     })
+    this.staticsConsumerInfoByMonth();
   },
   
   /**
@@ -168,8 +139,6 @@ Page({
     }
     Tool.request(ApiUrl.lanbitou.staticsConsumerInfoByMonth, '', param, app.globalData.unionId, app.globalData.xcxUserId)
     .then(data => {
-      console.log('--------------------', data);
-
       if (data.amountList.length > 0) {
         for (var i = 0; i < data.amountList.length; i++) {
           data.amountList[i] = data.amountList[i] / 100;
@@ -183,6 +152,42 @@ Page({
         amountList: data.amountList,
         records: data.records
       })
+      this.drawing();
     })
+  },
+
+  drawing: function(){
+    columnChart = new wxCharts({
+      canvasId: 'columnCanvas',
+      type: 'column',
+      animation: true, // 是否动画展示
+      categories: this.data.categories,
+      series: [{
+        name: '六个月对比图',
+        data: this.data.amountList,
+        format: function (val, name) {
+          return '¥' + val.toFixed(2);
+        },
+        color: '#99FF99'
+      }],
+      yAxis: {
+        format: function (val) {
+          return val;
+        },
+        min: 0,
+      },
+      xAxis: {
+        disableGrid: true,
+        type: 'calibration',
+      },
+      extra: {
+        column: {
+          width: 25,
+          legendTextColor: 'red'
+        }
+      },
+      width: this.data.windowWidth,
+      height: 200,
+    });
   }
 })

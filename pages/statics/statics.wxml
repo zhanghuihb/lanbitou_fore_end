@@ -46,7 +46,7 @@
       <text>{{digest}}</text>对比
     </view>
     <view class='canvas'>
-      <canvas style="width: {{windowWidth - 20}}px; height: 200px;" canvas-id="columnCanvas"></canvas>
+      <canvas style="width: {{windowWidth - 10}}px; height: 200px;" canvas-id="columnCanvas"></canvas>
     </view>
   </view>
 
