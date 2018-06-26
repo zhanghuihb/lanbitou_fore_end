@@ -32,7 +32,8 @@ export default {
     getConsumerInfoById: b('lanbitou') + '/consumerInfo/getConsumerInfoById',
     editConsumerInfo: b('lanbitou') + '/consumerInfo/editConsumerInfo',
     addConsumerInfo: b('lanbitou') + '/consumerInfo/addConsumerInfo',
-    getAccountInfo: b('lanbitou') + '/consumerInfo/getAccountInfo'
+    getAccountInfo: b('lanbitou') + '/consumerInfo/getAccountInfo',
+    staticsConsumerInfoByMonth: b('lanbitou') + '/consumerInfo/staticsConsumerInfoByMonth'
   },
   user: {
     login: b('user') + '/user/skip/login'

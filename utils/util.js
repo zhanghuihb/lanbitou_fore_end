@@ -32,7 +32,8 @@ function formatTime(number, format) {
 
 module.exports = {
   formatTime: formatTime,
-  validateEmail: validateEmail
+  validateEmail: validateEmail,
+  getCurrentMonth: getCurrentMonth
 }
 
 
@@ -45,6 +46,19 @@ function validateEmail(email) {
 
 
   return reg.test(email)
+}
+
+/**
+ * 获取当前年月，格式2018-06
+ * 
+ */
+function getCurrentMonth(date){
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  if(month < 10){
+    return year + "-0" + month; 
+  }
+  return year + "-" + month;
 }
 
 

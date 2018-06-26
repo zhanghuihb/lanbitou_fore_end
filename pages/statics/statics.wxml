@@ -1,24 +1,68 @@
 <!--pages/statics/statics.wxml-->
 <view>
   <view class='condition'>
-    <view class='view_second'>
+    <view class='view_second' style='width:100%;'>
       <view class="section">
         <picker mode="date" fields='month' value="{{consumerDate}}" start="2000-01" end="2099-01" bindchange="bindDateChange">
           <view class="picker" style='float:left;'>
             <view wx:if='{{consumerDate}}'>{{consumerDate}}<text decode="{{true}}">&emsp;</text></view>
-            <view wx:else>2018-06<text decode="{{true}}">&emsp;</text></view>
-          </view>
-          <view style='float:left;'>
-            <image style="width: 23px; height: 23px;float:left;" mode="aspectFit" src="../../../imgs/icon_more_unfold.png"></image>
-          </view>
-          <view style='float:right;'>
-            <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_default.png"></image>
-          </view>
-          <view style='float:right;'>
-            <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_default.png"></image>
+            <view wx:else>{{currentMonth}}<text decode="{{true}}">&emsp;</text></view>
           </view> 
+        <view style='float:left;'>
+          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_more_unfold.png"></image>
+        </view>
         </picker>
       </view>
+      <view style='margin-right:20px;'>
+        <view style='float:right;' hidden='{{hiddenArr[0]}}' bindtap='bindHiddenTap_income_default'>
+          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_default.png"></image>
+        </view>
+        <view style='float:right;' hidden='{{hiddenArr[1]}}'>
+          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_selected.png"></image>
+        </view>
+      </view>
+      <view style='margin-right:5px;'>
+        <view style='float:right;' hidden='{{hiddenArr[1]}}' bindtap='bindHiddenTap_out_default'>
+          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_default.png"></image>
+        </view>
+        <view style='float:right;' hidden='{{hiddenArr[0]}}'>
+          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_selected.png"></image>
+        </view>  
+      </view>
+    </view>
+  </view>
+
+  <view class='font_position'>
+    <view class='font_style_1'>
+      共<text>{{digest}}{{count}}</text>笔，合计
+    </view>
+    <view class='font_style_2'>
+      ¥<text>{{total/100}}</text>
+    </view>
+  </view>
+
+  <view class='font_position'>
+    <view class='font_style_1'>
+      <text>{{digest}}</text>对比
+    </view>
+    <view class='canvas'>
+      <canvas style="width: {{windowWidth - 20}}px; height: 200px;" canvas-id="columnCanvas"></canvas>
+    </view>
+  </view>
+
+  <view class='font_position'>
+    <view class='font_style_1'>
+      <text>{{digest}}</text>排行榜
+    </view>
+    <view>
+      <block wx:for="{{records}}" wx:key='id'>
+        <view class="tr">
+          <view class="td" style='width:20%;'>{{index + 1}}</view>
+          <view class="td" style='width:40%;'>{{item.codeName}}</view>
+          <view class="td" style='width:40%;'>{{item.amount/100}}</view>
+        </view>
+        <view class='line'></view>
+      </block>
     </view>
   </view>
 </view>

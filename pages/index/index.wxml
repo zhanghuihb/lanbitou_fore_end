@@ -26,4 +26,4 @@
     <view class='line'></view>
   </block>
 </view>
-   <!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>     -->
+    <!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>      -->

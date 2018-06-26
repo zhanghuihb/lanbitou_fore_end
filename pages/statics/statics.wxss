@@ -14,3 +14,40 @@
   font-size: 16px;
 
 }
+
+.font_position {
+  margin-left: 20px;
+  margin-top: 30px;
+}
+.font_style_1 {
+  font-size: 14px;
+  color: #D3D3D3;
+}
+.font_style_2 {
+  margin-top: 15px;
+  font-size: 23px;
+}
+.canvas {
+  margin-top: 20px;
+  margin-left: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 2.5rem;
+  align-items: center;
+}
+.td {
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background: #D3D3D3;
+}
