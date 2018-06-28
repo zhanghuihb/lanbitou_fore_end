@@ -8,7 +8,10 @@
     "pages/resource/res-add/res-add",
     "pages/resource/res-edit/res-edit",
     "pages/personcenter/personcenter",
-    "pages/statics/statics"
+    "pages/statics/statics",
+    "pages/notice/notice",
+    "pages/opinion/opinion",
+    "pages/introduce/introduce"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF8C00",

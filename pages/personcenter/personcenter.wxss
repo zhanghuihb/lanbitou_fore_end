@@ -20,9 +20,9 @@
 }
 
 .personcenter text{
-  font-size: 32rpx;
+  font-size: 30rpx;
 	color: #333839;
-  margin-left: 17rpx;
+  margin-left: 20rpx;
 }
 
 .setting-view {
@@ -39,8 +39,8 @@
   position: absolute;
   right: 30rpx;
   top: 40rpx;
-  width: 12rpx;
-  height: 21rpx;
+  width: 15rpx;
+  height: 25rpx;
 }
 
 .statics {
@@ -65,4 +65,75 @@
   height: 60%;
   background: #888888;
   margin-top: 10px;
+}
+
+.mask {
+    position: fixed;
+    z-index: 25;
+    width: 750rpx;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.message-modal {
+    position: fixed;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 36rpx;
+    box-sizing: border-box;
+    width: 500rpx;
+    height: 294rpx;
+    border-radius: 10rpx;
+    background-color: #f9f9f9;
+}
+
+.message-modal .title {
+    margin: 0 auto 20rpx;
+    width: 200rpx;
+    height: 48rpx;
+    color: #333839;
+    font-weight: 600;
+    font-size: 38rpx;
+}
+
+.message-modal input {
+    margin: 0 auto 36rpx;
+    box-sizing: border-box;
+    padding: 11rpx 20rpx;
+    width: 460rpx;
+    height: 70rpx;
+    line-height: 34rpx;
+    border-radius: 2rpx;
+    background-color: #fff;
+    border: 1rpx solid #e2e2e2;
+    font-size: 26rpx;
+    color: #9a9a9d;
+}
+
+.message-modal .modal-btn-group {
+    display: flex;
+    border-top: 1rpx solid #e2e2e2;
+    width: 500rpx;
+    height: 88rpx;
+}
+
+.message-modal .modal-btn-group .modal-btn {
+    flex: 1;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    color: #445354;
+    font-size: 35rpx;
+}
+
+.message-modal .modal-btn-group .modal-btn.cancel {
+    border-right: 1rpx solid #e2e2e2;
+}
+
+.message-modal .modal-btn-group .modal-btn.confirm {
+    color: #20b6be;
 }

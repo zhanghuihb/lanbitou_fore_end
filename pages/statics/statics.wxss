@@ -14,7 +14,9 @@
   font-size: 16px;
 
 }
-
+.view{
+    position: fixed; /*相对定位*/
+}
 .font_position {
   margin-left: 20px;
   margin-top: 30px;

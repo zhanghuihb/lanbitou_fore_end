@@ -128,10 +128,11 @@ Page({
       }
       if (flag) {
         this.setData({ is_first_action: true });
-        wx.showModal({
-          title: '提示',
-          content: warn 
+        wx.showToast({
+          title: warn,
+          icon: 'none'
         })
+        return;
       }
     }
   },

@@ -1,0 +1,28 @@
+<!--pages/introduce/introduce.wxml-->
+<view class='body'>
+  <view>
+    <text>1. 击掌王者是一款为有规划、有想法的人提供的记账</text>
+    <text>应用，可以帮助用户将每一笔开支详细的记录在应</text>
+    <text>用里，每月都能够通过图表的方式查看当月开支</text>
+    <text>情况，让你的花费一目了然。\n</text>
+
+    <view class='line'></view>
+    <text>2. 击掌王者界面追求清爽与简约,记账过程也很简单,可</text>
+    <text>以培养用户良好的记账习惯。\n</text>
+
+    <view class='line'></view>
+    <text>3. 击掌王者包含衣、食、住、行等八大类别，每个大</text>
+    <text>类别下又包含更加清晰的小类别，确保用户可以匹</text>
+    <text>配更加合适的类别\n</text>
+
+    <view class='line'></view>
+    <text>4. 击掌王者中的统计功能，能让用户更加清晰的了解</text>
+    <text>到每个月的消费情况，以及每个月中不同分类的消</text>
+    <text>费情况，知道钱花在了什么地方,方便及时调整。\n</text>
+
+    <view class='line'></view>
+    <text>5. 击掌王者团队祝您生活愉快、身体健康。\n</text>
+    
+    <view class='line'></view>
+  </view>
+</view>

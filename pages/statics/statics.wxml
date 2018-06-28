@@ -8,25 +8,25 @@
             <view wx:if='{{consumerDate}}'>{{consumerDate}}<text decode="{{true}}">&emsp;</text></view>
             <view wx:else>{{currentMonth}}<text decode="{{true}}">&emsp;</text></view>
           </view> 
-        <view style='float:left;'>
-          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_more_unfold.png"></image>
+        <view style="float:left;">
+            <image style="width: 23px; height: 23px;" src="../../imgs/icon_more_unfold.png"></image>
         </view>
         </picker>
       </view>
       <view style='margin-right:20px;'>
         <view style='float:right;' hidden='{{hiddenArr[0]}}' bindtap='bindHiddenTap_income_default'>
-          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_default.png"></image>
+          <image style="width: 23px; height: 23px;" src="../../imgs/icon_income_default.png"></image>
         </view>
         <view style='float:right;' hidden='{{hiddenArr[1]}}'>
-          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_income_selected.png"></image>
+          <image style="width: 23px; height: 23px;" src="../../imgs/icon_income_selected.png"></image>
         </view>
       </view>
       <view style='margin-right:5px;'>
         <view style='float:right;' hidden='{{hiddenArr[1]}}' bindtap='bindHiddenTap_out_default'>
-          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_default.png"></image>
+          <image style="width: 23px; height: 23px;" src="../../imgs/icon_out_default.png"></image>
         </view>
         <view style='float:right;' hidden='{{hiddenArr[0]}}'>
-          <image style="width: 23px; height: 23px;" mode="aspectFit" src="../../../imgs/icon_out_selected.png"></image>
+          <image style="width: 23px; height: 23px;" src="../../imgs/icon_out_selected.png"></image>
         </view>  
       </view>
     </view>

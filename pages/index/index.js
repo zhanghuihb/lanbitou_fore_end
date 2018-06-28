@@ -1,5 +1,6 @@
 import ApiUrl from '../../api-url.js';
 import * as Tool from '../../tool.js';
+import Util from '../../utils/util.js';
 
 var time = require('../../utils/util.js');
 //index.js
@@ -21,7 +22,8 @@ Page({
     top: '350',
     left: '0',
     windowWidth: '',
-    windowHeight: ''
+    windowHeight: '',
+    showMsg: ''
   },
 
   /**
@@ -44,6 +46,8 @@ Page({
       currentPage = 1;
       this.setData({
         records: [],
+        showMsg: '',
+        localDate: Util.getCurrentMonth(new Date()) + '-01'
       });
       getConsumerInfos(that);
     });
@@ -101,7 +105,8 @@ Page({
 var currentPage = 1;
 var getConsumerInfos = function(that){
   that.setData({
-    hidden: false
+    hidden: false,
+    showMsg: ''
   });
 
   const unionId = app.globalData.unionId;
@@ -137,7 +142,7 @@ var getConsumerInfos = function(that){
       }
       currentPage = data.currentPage + 1;
       that.data.records = l;
-      that.setData({ records: that.data.records});
+      that.setData({ records: that.data.records, showMsg:'还没有记账，赶紧去记账吧!'});
       that.setData({
         hidden: true
       });

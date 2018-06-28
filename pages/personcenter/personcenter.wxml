@@ -40,14 +40,23 @@
 
   <view class='setting-view'>
     <block wx:for="{{dataArr}}" wx:key="item">
-      <view class='personcenter'>
+      <view class='personcenter' bindtap='stepToNext' id='{{index}}'>
         <image class='icon-image' src="{{item.icon}}"></image>
         <text>{{item.title}}</text>
         <!-- 红点 -->
         <view class='redDot-view' wx:if="{{item.isShowRedDot}}"></view>
-        <image class='right-image' src='/imgs/icon_next.png'></image>
+        <view><image class='right-image' src='/imgs/icon_next.png'></image></view>
       </view>
     </block>
   </view>
 
+  <view class="mask" wx:if="{{showOpinionModal}}"></view>
+  <view class="message-modal" wx:if="{{showOpinionModal}}">
+      <view class="title">建议及留言</view>
+      <input placeholder="建议及留言内容(限20字)" type="text" maxlength="20" bindinput="handleInput"></input>
+      <view class="modal-btn-group">
+          <view class="modal-btn cancel" catchtap="handleCancel">取消</view>
+          <view class="modal-btn confirm" catchtap="handleConfirm">确认</view>
+      </view>
+  </view>
 </view>

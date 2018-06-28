@@ -1,6 +1,6 @@
 import ApiUrl from '../../api-url.js';
 import * as Tool from '../../tool.js';
-import Util from '../../utils/util.js'
+import Util from '../../utils/util.js';
 
 var wxCharts = require('../../utils/wxcharts.js')
 var columnChart = null;
@@ -22,8 +22,8 @@ Page({
     digest: '支出',
     count: '0',
     total: '0',
-    categories: ['1', '2', '3', '4', '5', '6'],
-    amountList: [15.25, 20, 45.36, 37, 66, 25],
+    categories: [],
+    amountList: [],
     records: []
   },
 
@@ -49,7 +49,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var currentMonth = Util.getCurrentMonth(new Date());
+    var currentMonth = this.data.currentMonth;
+    if (currentMonth == '') {
+      currentMonth = Util.getCurrentMonth(new Date());
+    }
+
     this.setData({
       currentMonth: currentMonth
     })
@@ -139,12 +143,14 @@ Page({
     }
     Tool.request(ApiUrl.lanbitou.staticsConsumerInfoByMonth, '', param, app.globalData.unionId, app.globalData.xcxUserId)
     .then(data => {
-      if (data.amountList.length > 0) {
-        for (var i = 0; i < data.amountList.length; i++) {
-          data.amountList[i] = data.amountList[i] / 100;
+      if (data.amountList != null) {
+        if (data.amountList.length > 0) {
+          for (var i = 0; i < data.amountList.length; i++) {
+            data.amountList[i] = data.amountList[i] / 100;
+          }
         }
       }
-      
+
       this.setData({
         count: data.count,
         total: data.totalAmount,

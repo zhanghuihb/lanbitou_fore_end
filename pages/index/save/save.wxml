@@ -74,8 +74,9 @@
     </view>
     <view class='line'></view>
     <!-- 描述 -->
-    <view class="section left">
-      描<text decode="{{true}}">&emsp;</text>述：<input maxlength="32" placeholder="描述" name="description"/>
+    <view class="section textarea">
+      <view>描<text decode="{{true}}">&emsp;</text>述：</view>
+      <textarea style='height:130px;width:260px;' placeholder="描述" name="description" maxlength='64'/>
     </view>
     <view class='line'></view>
 

@@ -4,26 +4,31 @@
     <view>
       <image style="height:40px;width:40px;" src="../../imgs/keep-accounts.png"></image>
     </view>
- </view>
+  </view>
 
-  <block wx:for="{{records}}" wx:key='id'>
-    <view wx:if="{{item.id == null}}" class='month'>
-      <view style='margin-left:20px;'>{{item.baseResultStatics.localDate}}</view>
-      <view>
-        收入¥{{item.baseResultStatics.totalIncome/100}}
+  <view wx:if="{{records.length > 0}}" class='table'>
+    <block wx:for="{{records}}" wx:key='id'>
+      <view wx:if="{{item.id == null}}" class='month'>
+        <view style='margin-left:20px;'>{{item.baseResultStatics.localDate}}</view>
+        <view>
+          收入¥{{item.baseResultStatics.totalIncome/100}}
+        </view>
+        <view>
+          支出¥{{item.baseResultStatics.totalExpend/100}}
+        </view>
       </view>
-      <view>
-        支出¥{{item.baseResultStatics.totalExpend/100}}
+      <view  wx:else class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
+        <view class="td" style='width:35%;'>{{item.codeName}}</view>
+        <view class="td" style='width:20%;'>{{item.amount/100}}</view>
+        <view wx:if="{{item.digest == 1}}" class="td" style='width:15%;'>收入</view>
+        <view wx:else class="td" style='width:15%;'>支出</view>
+        <view class="td" style='width:30%;'>{{item.consumerTime}}</view>
       </view>
-    </view>
-    <view  wx:else class="tr" bindtap="getConsumerInfoById" data-id="{{item.id}}">
-      <view class="td" style='width:35%;'>{{item.codeName}}</view>
-      <view class="td" style='width:20%;'>{{item.amount/100}}</view>
-      <view wx:if="{{item.digest == 1}}" class="td" style='width:15%;'>收入</view>
-      <view wx:else class="td" style='width:15%;'>支出</view>
-      <view class="td" style='width:30%;'>{{item.consumerTime}}</view>
-    </view>
-    <view class='line'></view>
-  </block>
+      <view class='line'></view>
+    </block> 
+  </view>
+  <view wx:else bindtap="addConsumerInfo">
+    <text class='th' style='color:red;'>{{showMsg}}</text>
+  </view>
 </view>
-    <!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>      -->
+<!-- <button class='hiddenbtn' bindgetuserinfo='login' open-type='getUserInfo'>点击登录</button>         -->

@@ -4,14 +4,14 @@ const ENV = 'dev';
 
 let baseUrl = {
   lanbitou: {
-    // dev: 'http://192.168.2.132:8080/lanbitou',
-    dev: 'http://192.168.0.104:8080/lanbitou',
+    dev: 'http://192.168.2.132:8080/lanbitou',
+    // dev: 'http://192.168.0.104:8080/lanbitou',
     test: 'http://192.168.2.132:8080/lanbitou',
     prod: 'http://192.168.2.132:8080/lanbitou'
   },
   user: {
-    // dev: 'http://192.168.2.132:8081/user',
-    dev: 'http://192.168.0.104:8081/user',
+    dev: 'http://192.168.2.132:8081/user',
+    // dev: 'http://192.168.0.104:8081/user',
     test: 'http://192.168.2.132:8081/user',
     prod: 'http://192.168.2.132:8081/user'
   }
@@ -36,6 +36,7 @@ export default {
     staticsConsumerInfoByMonth: b('lanbitou') + '/consumerInfo/staticsConsumerInfoByMonth'
   },
   user: {
-    login: b('user') + '/user/skip/login'
+    login: b('user') + '/user/skip/login',
+    saveOpinion: b('user') + '/opinion/saveOpinion'
   }
 }
