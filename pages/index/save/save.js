@@ -1,5 +1,6 @@
 import ApiUrl from '../../../api-url.js';
 import * as Tool from '../../../tool.js';
+import Util from '../../../utils/util.js';
 
 // pages/index/save/save.js
 //获取应用实例
@@ -13,7 +14,7 @@ Page({
   data: {
     provinces: [],
     citys: [],
-    provincesIndex: 0,
+    provincesIndex: 8,
     citysIndex: 0,
     parentCategory: [],
     parentCategoryCode: [],
@@ -102,6 +103,8 @@ Page({
         warn = "描述不可为空";
       }else {
         flag = false;// 验证通过
+        console.log("childCategoryCode==============", this.data.childCategoryCode);
+        console.log("parentCategoryCode==============", this.data.parentCategoryCode);
         let param = {
           userId: app.globalData.xcxUserId,
           province: this.data.provinces[value.province],
@@ -110,7 +113,7 @@ Page({
           codeName: this.data.childCategory[value.childCode],
           parentCode: this.data.parentCategoryCode[value.parentCode],
           parentCodeName: this.data.parentCategory[value.parentCode],
-          amount: value.amount * 100,
+          amount: Util.mul(amount, 100),
           consumer: value.consumer,
           consumerTime: value.consumerDate + " " + value.consumerTime,
           description: value.description

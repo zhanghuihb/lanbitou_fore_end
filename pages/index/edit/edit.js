@@ -1,7 +1,6 @@
 import ApiUrl from '../../../api-url.js';
 import * as Tool from '../../../tool.js';
-
-var time = require('../../../utils/util.js')
+import Util from '../../../utils/util.js';
 // pages/index/edit/edit.js
 //获取应用实例
 const app = getApp()
@@ -215,15 +214,16 @@ Page({
           id: this.data.consumerInfo.id,
           province: this.data.provinces[value.province],
           city: this.data.citys[value.city],
-          code: value.childCode,
+          code: this.data.childCategoryCode[value.childCode],
           codeName: this.data.childCategory[value.childCode],
-          parentCode: value.parentCode,
+          parentCode: this.data.parentCategoryCode[value.parentCode],
           parentCodeName: this.data.parentCategory[value.parentCode],
-          amount: value.amount * 100,
+          amount: Util.mul(amount, 100),
           consumer: value.consumer,
           consumerTime: value.consumerDate + " " + value.consumerTime,
           description: value.description
         }
+        console.log("=======================",param);
         Tool.request(ApiUrl.lanbitou.editConsumerInfo, '', param, app.globalData.unionId)
           .then(data => {
             this.setData({ is_first_action: true });

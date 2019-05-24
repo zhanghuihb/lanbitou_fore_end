@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isFirstCommit: true,
     showOpinionModal: false,
     opinionContent: '', 
     totalIncome: '',
@@ -131,32 +132,39 @@ Page({
   handleCancel() {
     this.setData({
       opinionContent: '',
-      showOpinionModal: false
+      showOpinionModal: false,
+      isFirstCommit: true
     })
   },
 
   // 点击modal的确认按钮
   handleConfirm() {
-    if (!this.data.opinionContent) {
-      wx.showToast({
-        title: '留言内容不能为空',
-        icon: 'none'
+    if(this.data.isFirstCommit){
+      this.setData({
+        isFirstCommt: false
       })
-      return;
-    }
-    let userInfo = app.globalData.userInfo;
-    let userId = app.globalData.xcxUserId;
-    let param = {
-      content: this.data.opinionContent,
-    }
-    Tool.request(ApiUrl.user.saveOpinion, '', param, '',userId)
-      .then(res => {
-        this.setData({
-          showOpinionModal: false,
-          opinionContent: ''
+      if (!this.data.opinionContent) {
+        wx.showToast({
+          title: '留言内容不能为空',
+          icon: 'none'
         })
-      }, err => {
-        console.log(err)
-      })
+        return;
+      }
+      let userInfo = app.globalData.userInfo;
+      let userId = app.globalData.xcxUserId;
+      let param = {
+        content: this.data.opinionContent,
+      }
+      Tool.request(ApiUrl.user.saveOpinion, '', param, '', userId)
+        .then(res => {
+          this.setData({
+            showOpinionModal: false,
+            opinionContent: '',
+            isFirstCommt:true
+          })
+        }, err => {
+          console.log(err)
+        })
+    }
   },
 })

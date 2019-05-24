@@ -12,6 +12,8 @@
 	"appid": "wxfca30b8b12799b70",
 	"projectname": "lanbitou",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

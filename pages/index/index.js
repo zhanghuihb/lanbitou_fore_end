@@ -116,7 +116,7 @@ var getConsumerInfos = function(that){
     localDate: localDate,
     page: {
       currentPage: currentPage,
-      pageSize: 20
+      pageSize: 100
     }
   }
   wx.showLoading({

@@ -1,7 +1,7 @@
 /* pages/index/edit/edit.wxss */
 .top {
   height: 100px;
-  background: #FF8C00;
+  background: #e2e2e2;
 }
 .position{
   display: flex;

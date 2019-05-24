@@ -9,11 +9,11 @@
   <view wx:if="{{records.length > 0}}" class='table'>
     <block wx:for="{{records}}" wx:key='id'>
       <view wx:if="{{item.id == null}}" class='month'>
-        <view style='margin-left:20px;'>{{item.baseResultStatics.localDate}}</view>
-        <view>
+        <view  class="td">{{item.baseResultStatics.localDate}}</view>
+        <view class="td" >
           收入¥{{item.baseResultStatics.totalIncome/100}}
         </view>
-        <view>
+        <view class="td" >
           支出¥{{item.baseResultStatics.totalExpend/100}}
         </view>
       </view>

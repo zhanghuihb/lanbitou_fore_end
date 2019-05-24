@@ -1,19 +1,21 @@
-const ENV = 'dev';
+// const ENV = 'dev';
 // const ENV = 'test';
-// const ENV = 'prod';
+const ENV = 'prod';
 
 let baseUrl = {
   lanbitou: {
     dev: 'http://192.168.2.132:8080/lanbitou',
     // dev: 'http://192.168.0.104:8080/lanbitou',
     test: 'http://192.168.2.132:8080/lanbitou',
-    prod: 'http://192.168.2.132:8080/lanbitou'
+    prod: 'http://118.25.59.203:9080/lanbitou'
+    // prod: 'http://www.zhanghuihb.com:9080/lanbitou'
   },
   user: {
-    dev: 'http://192.168.2.132:8081/user',
-    // dev: 'http://192.168.0.104:8081/user',
-    test: 'http://192.168.2.132:8081/user',
-    prod: 'http://192.168.2.132:8081/user'
+    dev: 'http://192.168.2.132:8080/lanbitou',
+    // dev: 'http://192.168.0.104:8081/lanbitou',
+    test: 'http://192.168.2.132:8081/lanbitou',
+    prod: 'http://118.25.59.203:9080/lanbitou'
+    // prod: 'http://www.zhanghuihb.com:9080/lanbitou'
   }
 };
 
